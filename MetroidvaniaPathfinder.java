@@ -16,6 +16,8 @@ will recognize zero as the root node.
 
 3. Provide your CNF file as an argument when you run the program.
 
+SUGGESTION: For an easily identifiable boss/exit node, have that be the highest number.
+
 */
 
 class Node 
