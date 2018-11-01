@@ -18,6 +18,8 @@ will recognize zero as the root node.
 
 SUGGESTION: For an easily identifiable boss/exit node, have that be the highest number.
 
+
+
 */
 
 class Node 
@@ -212,7 +214,14 @@ class MetroidvaniaPathfinder
 	public static void main(String[] args) 
 	{
 		Scanner reader = new Scanner(System.in);
-		System.out.println("\nPass the requisite CNF file to continue.\n");
+
+		System.out.println("\nWelcome to the Metroidvania Pathfinder, my most practical invention.");
+		System.out.println("\nHow to provide input:");
+		System.out.println("\n1. Make a CNF file in the same directory as this.");
+		System.out.println("\n2. Write integers in the file such that two integers occupy each line. You\nmust leave one space between the two integers on the line. This program\nwill recognize zero as the root node.");
+		System.out.println("\n3. Provide your CNF file as an argument when you run the program.");
+		System.out.println("\nSUGGESTION: For an easily identifiable boss/exit node, have that be the highest number.");
+		System.out.println("\nPass the requisite CNF file to continue.");
 
 		readEdges(reader.next());
 
