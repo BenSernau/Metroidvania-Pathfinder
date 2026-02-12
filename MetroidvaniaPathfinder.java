@@ -104,42 +104,42 @@ class MetroidvaniaPathfinder
 
 	private static void defineRoute()
 	{
-		Queue<Node> pathQueue = new LinkedList<Node>();
-		boolean allFlagged = false;
-		boolean showStart = true;
-		Node rememberNode = new Node(0);
+		Queue<Node> pathQueue = new LinkedList<Node>(); //Iterate through the graph with a queue.
+		boolean allFlagged = false; //Track whether the search has reached all nodes.
+		boolean showStart = true; //Decide whether to search rooms from the current node.
+		Node rememberNode = new Node(0); //Store the most recent node with further adjacent nodes.
 
-		nodes.get(0).flagged = true;
+		nodes.get(0).flagged = true; //Flag the first node, which is always the one containing 0.
 
-		pathQueue.add(nodes.get(0));
+		pathQueue.add(nodes.get(0)); //Add the first node to the queue.
 
-		while (!allFlagged)
+		while (!allFlagged) //While the search hasn't reached all nodes,
 		{
-			for (int i = 0; i < edges.size(); i++)
+			for (int i = 0; i < edges.size(); i++) //for every edge,
 			{
-				if (pathQueue.peek() == null)
+				if (pathQueue.peek() == null) //if nothing is at the front of the queue,
 				{
-					System.out.println("\nERROR: UNREACHABLE NODE FOUND\n");
+					System.out.println("\nERROR: UNREACHABLE NODE FOUND\n"); //throw an error.
 					return;
 				}
 
-				else if (edges.get(i).nodeA.self == pathQueue.peek().self && !edges.get(i).nodeB.flagged)
+				else if (edges.get(i).nodeA.self == pathQueue.peek().self && !edges.get(i).nodeB.flagged) //if one of this edge's nodes is at the front of the queue and the search hasn't reached the opposite node, 
 				{	
-					if (rememberNode.self != pathQueue.peek().self)
+					if (rememberNode.self != pathQueue.peek().self) //if the last node with further adjacent nodes is not at the top of the queue,
 					{
-						System.out.println("\nMove (possibly across discovered rooms) from room " + Integer.toString(rememberNode.self) + " to room " + Integer.toString(pathQueue.peek().self));
+						System.out.println("\nMove (possibly across discovered rooms) from room " + Integer.toString(rememberNode.self) + " to room " + Integer.toString(pathQueue.peek().self)); //tell the user to move from rememberNode to the node at the top of the queue.
 					}
 
-					if (showStart)
+					if (showStart) //if the user should search rooms from the current node,
 					{
-						System.out.print("\nFrom room " + Integer.toString(pathQueue.peek().self) + ", investigate the following adjacent room(s):");
-						showStart = false;
+						System.out.print("\nFrom room " + Integer.toString(pathQueue.peek().self) + ", investigate the following adjacent room(s):"); //tell the user to investigate them
+						showStart = false; //and change the boolean.
 					}
 
-					rememberNode = pathQueue.peek();
-					System.out.print(" " + Integer.toString(edges.get(i).nodeB.self));
-					edges.get(i).nodeB.flagged = true;
-					pathQueue.add(edges.get(i).nodeB);		
+					rememberNode = pathQueue.peek(); //update rememberNode to the current node.
+					System.out.print(" " + Integer.toString(edges.get(i).nodeB.self)); //print the opposite node to search.
+					edges.get(i).nodeB.flagged = true; //flag the opposite node.
+					pathQueue.add(edges.get(i).nodeB); //add the opposite node to the queue.	
 				}
 
 				else if (edges.get(i).nodeB.self == pathQueue.peek().self && !edges.get(i).nodeA.flagged)
@@ -162,26 +162,26 @@ class MetroidvaniaPathfinder
 				}
 			}
 
-			if (!showStart)
+			if (!showStart) //if the user needn't search rooms from the current node,
 			{
-				System.out.print("\n");
+				System.out.print("\n"); //print a line break in the terminal.
 			}
 
-			allFlagged = true;
+			allFlagged = true; //change the boolean.
 
-			for (int i = 0; i < nodes.size(); i++)
+			for (int i = 0; i < nodes.size(); i++) //for all nodes,
 			{
-				if (!nodes.get(i).flagged)
+				if (!nodes.get(i).flagged) //if the search hasn't reached this node,
 				{
-					showStart = true;
-					allFlagged = false;
-					pathQueue.remove();
-					break;
+					showStart = true; //change the boolean.
+					allFlagged = false; //reset allFlagged to continue the search.
+					pathQueue.remove(); //remove this node to backtrack.
+					break; //break from the for loop.
 				}
 			}
 		}
 
-		System.out.println("\nDungeon clear!\n");
+		System.out.println("\nDungeon clear!\n"); //Tell the user the dungeon is complete.
 	}
 
 	private static boolean nodesConsecutive() //Checks if the nodes are labeled consecutively.  See error message in this method for details.
