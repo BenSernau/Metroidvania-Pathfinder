@@ -119,7 +119,7 @@ class MetroidvaniaPathfinder
 			{
 				if (pathQueue.peek() == null)
 				{
-					System.out.println("\nERROR: UNREACHABLE NODE FOUND JFC\n");
+					System.out.println("\nERROR: UNREACHABLE NODE FOUND\n");
 					return;
 				}
 
