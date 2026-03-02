@@ -1,4 +1,232 @@
 import java.util.ArrayList;
+import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.io.*;
+
+/*
+
+How to provide input:
+
+1. Make a graph file in the same directory as this.
+
+2. Write integers in the file such that two integers occupy each line. You 
+must leave one space between the two integers on the line. This program
+will recognize zero as the root node.
+
+3. Provide your graph file as an argument when you run the program.
+
+SUGGESTION: For an easily identifiable boss/exit node, have that be the highest number.
+
+
+
+*/
+
+class Node 
+{
+	int self = 0;
+	boolean flagged = false;
+	ArrayList<Node> neighbors = new ArrayList<Node>();
+
+	Node(int s)
+	{
+		self = s;
+	}
+}
+
+class MetroidvaniaPathfinder
+{
+	static ArrayList<Node> nodes = new ArrayList<Node>();
+
+	private static void readEdges(String ef)
+	{
+		int prev = 0, nodeNum = 0;
+		String currLine = null;
+		String[] currRow = new String[0];
+
+		try
+		{
+			BufferedReader buffRead = new BufferedReader(new FileReader(ef));
+
+			buffRead.mark(1000);
+
+			while ((currLine = buffRead.readLine()) != null) //Look for the biggest number in the file.
+			{
+				currRow = currLine.split(" ");
+				nodeNum = Math.max(prev, (Math.max(Integer.parseInt(currRow[0]), Integer.parseInt(currRow[1]))));
+				prev = nodeNum;
+			}
+
+			for (int i = 0; i < nodeNum + 1; i++) //Create a node for every consecutive number beneath the highest number.
+			{
+				nodes.add(new Node(i));
+			}
+
+			buffRead.close();
+			buffRead = new BufferedReader(new FileReader(ef)); //Return to the top of the file.
+
+			while ((currLine = buffRead.readLine()) != null)
+			{
+				currRow = currLine.split(" ");
+
+				if (!nodes.get(Integer.parseInt(currRow[0])).neighbors.contains(nodes.get(Integer.parseInt(currRow[1]))) || !nodes.get(Integer.parseInt(currRow[1])).neighbors.contains(nodes.get(Integer.parseInt(currRow[0]))))
+				{
+					nodes.get(Integer.parseInt(currRow[0])).neighbors.add(nodes.get(Integer.parseInt(currRow[1])));
+					nodes.get(Integer.parseInt(currRow[1])).neighbors.add(nodes.get(Integer.parseInt(currRow[0])));
+				}
+			}
+
+			buffRead.close();
+		}
+
+		catch(FileNotFoundException ex) 
+		{
+		    System.out.println("ERROR: The file cannot open.");                
+		}
+
+		catch(IOException ex) 
+		{
+			ex.printStackTrace();
+		}	
+
+		catch(IllegalArgumentException ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+
+	private static void defineRouteBFS()
+	{
+		Queue<Node> pathQueue = new LinkedList<Node>(); //Store nodes with further adjacent nodes in a queue.
+		Node currNode = null; //Store the current node with further adjacent nodes.
+		String currMsg = ""; //Store the current message to the user.
+		boolean displayMsg = false; //Determine whether to display the message in the terminal.
+		int iterations = 0; //Count the number of iterations before the search concludes.
+
+		nodes.get(0).flagged = true; //Flag the first node, which always contains 0.
+
+		pathQueue.add(nodes.get(0)); //Add the first node to pathQueue.
+
+		while (pathQueue.size() > 0) //While pathQueue contains elements,
+		{	
+			iterations++; //increase the number of iterations,
+			currNode = pathQueue.remove(); //set currNode to whatever pathQueue removes,
+			currMsg = "Move (possibly across discovered rooms) to " + currNode.self + ". From there, clear:"; //update currMsg with the current node,
+
+			if (iterations <= 9)
+			{
+				currMsg = "From " + currNode.self + ", clear:";
+			}
+
+			displayMsg = false; //and set displayMsg to false.
+
+			for (int i = 0; i < currNode.neighbors.size(); i++) //for every node neighboring the current node,
+			{
+				iterations++; //increase the number of iterations, and
+				if (!currNode.neighbors.get(i).flagged) //if the search has not flagged the neighbor,
+				{
+					displayMsg = true; //set displayMsg to true,
+					currNode.neighbors.get(i).flagged = true; //flag the neighbor,
+					pathQueue.add(currNode.neighbors.get(i));
+					currMsg = currMsg + " " + currNode.neighbors.get(i).self; //add the neighbor to pathQueue, and update the message with the neighbor.
+				}
+			}
+
+			if (displayMsg) //if the message should appear in the termainal,
+			{
+				System.out.println("\n" + currMsg); //print the message.
+			}
+		}
+
+		for (int i = 0; i < nodes.size(); i++) //Unflag all nodes to reset the search.
+		{
+			nodes.get(i).flagged = false;
+		}
+
+		System.out.println("\nDungeon clear in " + iterations + " iterations!\n"); //Show the number of iterations the method needed to complete the search.
+	}
+
+	private static void defineRouteDFS()
+	{
+		Stack<Node> pathStack = new Stack<>(); //Store nodes with further adjacent nodes in a stack.
+		Node currNode = null; //Store the current node with further adjacent nodes.
+		boolean shouldPop = false; //Determine whether pathStack should pop its topmost element.
+		int iterations = 0; //Count the number of iterations before the search concludes.
+
+		nodes.get(0).flagged = true; //Flag the first node, which always contains 0.
+
+		pathStack.push(nodes.get(0)); //Push the first node onto pathStack.
+
+		System.out.println("\nStarting from 0...");
+
+		while (pathStack.size() > 0) //While pathStack contains elements,
+		{	
+			iterations++; //increase the number of iterations,
+			shouldPop = true; //set shouldPop to true,
+			currNode = pathStack.peek(); //and set the current node to pathStack's topmost element.
+			
+			for (int i = 0; i < currNode.neighbors.size(); i++) //for every node neighboring the current node,
+			{
+				iterations++; //increase the number of iterations, and
+				if (!currNode.neighbors.get(i).flagged) //if the search has not flagged the neighbor,
+				{
+					currNode.neighbors.get(i).flagged = true; //flag the neighbor,
+					currNode = pathStack.push(currNode.neighbors.get(i)); //push the neighbor onto the stack, establishing it as the current node,
+					shouldPop = false; //set shouldPop to false, and
+					
+					if (iterations <= 9)
+					{
+						System.out.println("\nMove to " + currNode.self);
+					}
+
+					else
+					{
+						System.out.println("\nMove (possibly across discovered rooms) to: " + currNode.self); //print the appropriate message for the user.
+					}
+
+					break;
+				}
+			}
+
+			if (shouldPop) //if shouldPop is true,
+			{
+				pathStack.pop(); //Pop the top element from pathStack.
+			}
+		}
+
+		for (int i = 0; i < nodes.size(); i++) //Unflag all nodes to reset the search.
+		{
+			nodes.get(i).flagged = false;
+		}
+
+		System.out.println("\nDungeon clear in " + iterations + " iterations!\n"); //Show the number of iterations the method needed to complete the search.
+	}
+
+	public static void main(String[] args) 
+	{
+		Scanner reader = new Scanner(System.in);
+
+		System.out.println("\nWelcome to the Metroidvania Pathfinder, my most practical invention.");
+		System.out.println("\nHow to provide input:");
+		System.out.println("\n1. Make a graph file in the same directory as this.");
+		System.out.println("\n2. Write integers in the file such that two integers occupy each line. You\nmust leave one space between the two integers on the line. This program\nwill recognize zero as the root node.");
+		System.out.println("\n3. Provide your graph file as an argument when you run the program.");
+		System.out.println("\nSUGGESTION: For an easily identifiable boss/exit node, have that be the highest number.");
+		System.out.println("\nPass the requisite graph file to continue.\n");
+
+		readEdges(reader.next());
+
+		System.out.print("\nAlright, then.  Try this.  Unless you encounter obstructions in\nany of the rooms, you shouldn't need to take any detours.\n\nBFS results in:\n");
+		defineRouteBFS();
+		System.out.println("DFS results in:");
+		defineRouteDFS();
+	}
+}
+
+/* Previous Limited Version
+
+import java.util.ArrayList;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -20,7 +248,7 @@ SUGGESTION: For an easily identifiable boss/exit node, have that be the highest 
 
 
 
-*/
+
 
 class Node 
 {
@@ -231,4 +459,4 @@ class MetroidvaniaPathfinder
 			defineRoute();
 		}
 	}
-}
+}*/
