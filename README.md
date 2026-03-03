@@ -36,7 +36,7 @@ First, this method declares five variables: pathQueue stores all nodes leading t
 
 Initializing currNode to node 0, the method begins the search by flagging the first node and adding that node to pathQueue. While pathQueue contains elements, the method increases the number of iterations, sets currNode to whatever node pathQueue removes, updates currMsg with the current node, and sets displayMsg to false.
 
-Also, for every node neighboring the current node, the method increases the number of iterations, and if the search hasn’t flagged the neighbor, sets displayMsg to true, flags the neighbor, adds the neighbor to pathQueue, and updates currMsg with the neighbor’s ID. If the message should appear in the terminal, the method prints the message. This process repeats inside the while loop until pathQueue is empty.
+Also, for every node neighboring the current node, the method increases the number of iterations, and if the search has not flagged the neighbor, sets displayMsg to true, flags the neighbor, adds the neighbor to pathQueue, and updates currMsg with the neighbor’s ID. If the message should appear in the terminal, the method prints the message. This process repeats inside the while loop until pathQueue is empty.
 
 Finally, the method unflags all nodes to reset the search, displaying the number of iterations the method needed to complete the process.
 
