@@ -20,7 +20,7 @@ Traversal begins at the node containing 0. In the event of invalid input, the ap
 
 ## Error Handling
 
-The application confirms the validity of the requisite file’s name, catching IOExceptions and IllegalArgumentExceptions during parsing if the actual contents of the file don’t make sense (e.g, extra line breaks, more than two integers on a single line, etc). As for unreachable nodes or nodes that lead only to themselves, no error reporting is necessary. In such cases, the search simply ignores any nodes that are unreachable from node 0.
+The application validates the input file’s name, catching IOExceptions and IllegalArgumentExceptions during parsing if the file contents are malformed (e.g., extra line breaks, more than two integers on a single line, etc). As for unreachable nodes or nodes that lead only to themselves, no error reporting is necessary. In such cases, the search simply ignores any nodes that are unreachable from node 0.
 
 ## Graph Construction Model
 
@@ -54,7 +54,7 @@ Finally, the method unflags all nodes to reset the search, displaying the number
 
 ## Constraints and Assumptions
 
-Though this application conducts both BFS and DFS, the ideal option truly depends on the dungeon. BFS is generally better for a more mazelike structure with many short branches – like a dungeon in a video game. DFS is generally better for narrow graphs whose branches are very long.
+Though this application conducts both BFS and DFS, the ideal option truly depends on the dungeon. BFS performs better in shallow graphs with high branching – like dungeons in video games. In such graphs, level-by-level exploration with BFS obviates the shortest route to a search object. DFS may be more memory-efficient in deeper, narrower graphs.
 
 ## Example Input
 
@@ -187,9 +187,9 @@ The application iterates through the graph in accordance with BFS and DFS, listi
 
 ## Limitations
 
-The application lacks insight into a genuine dispassionate comparison between the two major types of search. A more robust program would not only suggest which search is better, but also determine the degree by which one is better, minutely detailing a relationship between graph structure and search performance.
+The application lacks quantitative performance analysis beyond iteration counting. A more robust implementation would measure execution time and memory consumption, detailing the degree by which one search type is more efficient.
 
-In terms of performance for both types of search, space complexity is O(V + E) because the program stores multiple nodes and edges as well as a stack of nodes, and time complexity is also O(V + E) because the current implementation scans only adjacent nodes during every iteration of the while loop.
+In terms of performance for both types of search, space complexity is O(V + E) because the program stores multiple nodes and edges as well as a stack of nodes, and time complexity is also O(V + E) because the current implementation processes each node and each edge only once during traversal.
 
 ## Future Improvements
 
