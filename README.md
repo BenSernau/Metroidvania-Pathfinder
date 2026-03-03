@@ -1,6 +1,6 @@
 ## Overview
 
-This desktop application converts a video game’s “dungeons” to unweighted, undirected graphs, evaluating traversal strategies with breadth-first search (BFS) and depth-first search (DFS). The tool verbally describes both types of search to instruct the user and counts the number of iterations for both implementations.
+This desktop application models video game “dungeon” layouts as unweighted, undirected graphs to evaluate traversal strategies with breadth-first search (BFS) and depth-first search (DFS). The tool outputs traversal steps and reports iteration counts for both types of search.
 
 ## Problem Definition
 
