@@ -46,7 +46,7 @@ defineRouteDFS() outlines the DFS path in the terminal for the user, calculating
 
 First, this method declares four variables: pathStack stores all nodes leading to further adjacent nodes, currNode notes the current node from which to search, shouldPop determines whether pathStack should pop its top element, and iterations stores the current number of iterations.
 
-Initializing currNode to node 0, the method begins the search by flagging the first node, pushing that node onto pathStack, and notifying the user that the search has begun. While pathStack contains elements, increase the number of iterations, set shouldPop to true, and set the current node to the element at the top of the stack.
+Initializing currNode to node 0, the method begins the search by flagging the first node, pushing that node onto pathStack, and notifying the user that the search has begun. While pathStack contains elements, the method increases the number of iterations, sets shouldPop to true, and sets the current node to the element at the top of the stack.
 
 Also, for every node neighboring the current node, the method increases the number of iterations, and if the search has not flagged the neighbor, flags the neighbor, sets the current node to the neighbor as the method pushes that neighbor onto the stack, sets shouldPop to false, and prints the appropriate message for the user. If shouldPop is true, the method pops the top element from pathStack. This process repeats inside the while loop until pathStack is empty.
 
