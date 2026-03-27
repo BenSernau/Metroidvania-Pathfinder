@@ -12,7 +12,7 @@ This desktop application models video game “dungeon” layouts as unweighted, 
 
 ## Problem Definition
 
-In terms of fundamental design, a game’s dungeons are little beyond unweighted undirected graphs. There are two primary options to visit all nodes in such a simple graph: depth-first search (DFS) or breadth-first search (BFS). 
+In terms of fundamental design, a game’s dungeons are little beyond unweighted undirected graphs. There are 2 primary options to visit all nodes in such a simple graph: depth-first search (DFS) or breadth-first search (BFS). 
 
 To follow DFS is to move as far as possible in one direction before reaching a dead end, retreating to the most recent fork in paths, picking a different direction, and repeating the process until there are no more nodes to visit.
 
@@ -22,13 +22,13 @@ The application implements both, counting the number of iterations for each.
 
 ## Input Format
 
-This application receives as input a graph file of no more than 1,000 characters. Each line in the file contains two distinct numbers separated by a space, representing an edge.
+This application receives as input a graph file of no more than 1,000 characters. Each line in the file contains 2 distinct numbers separated by a space, representing an edge.
 
 Traversal begins at the node containing 0. In the event of invalid input, the application instructs the user accordingly.
 
 ## Error Handling
 
-The application validates the input file’s name, catching IOExceptions and IllegalArgumentExceptions during parsing if the file contents are malformed (e.g., extra line breaks, more than two integers on a single line, etc). As for unreachable nodes or nodes that lead only to themselves, no error reporting is necessary. In such cases, the search simply ignores any nodes that are unreachable from node 0.
+The application validates the input file’s name, catching IOExceptions and IllegalArgumentExceptions during parsing if the file contents are malformed (e.g., extra line breaks, more than 2 integers on a single line, etc). As for unreachable nodes or nodes that lead only to themselves, no error reporting is necessary. In such cases, the search simply ignores any nodes that are unreachable from node 0.
 
 ## Graph Construction Model
 
@@ -40,7 +40,7 @@ To construct a graph, the program instantiates nodes with consecutive integer va
 
 defineRouteBFS() outlines the BFS path in the terminal for the user, calculating the number of iterations before the search concludes. Note that the number of iterations reflects the iterations of the implementation rather than the algorithm. 
 
-First, this method declares five variables: 
+First, this method declares 5 variables: 
 
 - **pathQueue** stores all nodes leading to further adjacent nodes. 
 - **currNode** notes the current node from which to search.
@@ -58,7 +58,7 @@ Finally, the method unflags all nodes to reset the search, displaying the number
 
 defineRouteDFS() outlines the DFS path in the terminal for the user, calculating the number of iterations before the search concludes. Note that the number of iterations reflects the iterations of the implementation rather than the algorithm.
 
-First, this method declares four variables: 
+First, this method declares 4 variables: 
 
 - **pathStack** stores all nodes leading to further adjacent nodes.
 - **currNode** notes the current node from which to search.
