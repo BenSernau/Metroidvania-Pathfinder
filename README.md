@@ -1,3 +1,10 @@
+# How to Run:
+
+1. Download and extract the zip file to a folder of your choice.
+2. Open any terminal and navigate to the folder that contains MetroidvaniaPathfinder.java.
+3. Type "javac MetroidvaniaPathfinder.java" to compile the project.
+4. Type "java MetroidvaniaPathfinder" and enter the dialogue.
+
 ## Overview
 
 This desktop application models video game “dungeon” layouts as unweighted, undirected graphs to evaluate traversal strategies with breadth-first search (BFS) and depth-first search (DFS). The tool outputs traversal steps and reports iteration counts for both types of search.
