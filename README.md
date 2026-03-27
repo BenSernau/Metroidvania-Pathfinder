@@ -12,7 +12,7 @@ This desktop application models video game “dungeon” layouts as unweighted, 
 
 ## Problem Definition
 
-In terms of fundamental design, a game’s dungeons are little beyond unweighted, undirected graphs. There are two primary options to visit all nodes in such a simple graph: depth-first search (DFS) or breadth-first search (BFS). 
+In terms of fundamental design, a game’s dungeons are little beyond unweighted undirected graphs. There are two primary options to visit all nodes in such a simple graph: depth-first search (DFS) or breadth-first search (BFS). 
 
 To follow DFS is to move as far as possible in one direction before reaching a dead end, retreating to the most recent fork in paths, picking a different direction, and repeating the process until there are no more nodes to visit.
 
@@ -40,7 +40,13 @@ To construct a graph, the program instantiates nodes with consecutive integer va
 
 defineRouteBFS() outlines the BFS path in the terminal for the user, calculating the number of iterations before the search concludes. Note that the number of iterations reflects the iterations of the implementation rather than the algorithm. 
 
-First, this method declares five variables: pathQueue stores all nodes leading to further adjacent nodes, currNode notes the current node from which to search, currMsg stores the current message to the user, displayMsg determines whether to print currMsg in the terminal, and iterations stores the current number of iterations.
+First, this method declares five variables: 
+
+- **pathQueue** stores all nodes leading to further adjacent nodes. 
+- **currNode** notes the current node from which to search.
+- **currMsg** stores the current message to the user.
+- **displayMsg** determines whether to print currMsg in the terminal.
+- **iterations** stores the current number of iterations.
 
 Initializing currNode to node 0, the method begins the search by flagging the first node and adding that node to pathQueue. While pathQueue contains elements, the method increases the number of iterations, sets currNode to whatever node pathQueue removes, updates currMsg with the current node, and sets displayMsg to false.
 
