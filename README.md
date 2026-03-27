@@ -4,6 +4,7 @@
 2. Open any terminal and navigate to the folder that contains MetroidvaniaPathfinder.java.
 3. Type "javac MetroidvaniaPathfinder.java" to compile the project.
 4. Type "java MetroidvaniaPathfinder" and enter the dialogue.
+5. Pass one of my demo graphs into the dialogue or create your own (e.g., "map0.graph").
 
 ## Overview
 
