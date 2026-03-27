@@ -58,7 +58,12 @@ Finally, the method unflags all nodes to reset the search, displaying the number
 
 defineRouteDFS() outlines the DFS path in the terminal for the user, calculating the number of iterations before the search concludes. Note that the number of iterations reflects the iterations of the implementation rather than the algorithm.
 
-First, this method declares four variables: pathStack stores all nodes leading to further adjacent nodes, currNode notes the current node from which to search, shouldPop determines whether pathStack should pop its top element, and iterations stores the current number of iterations.
+First, this method declares four variables: 
+
+- **pathStack** stores all nodes leading to further adjacent nodes.
+- **currNode** notes the current node from which to search.
+- **shouldPop** determines whether pathStack should pop its top element.
+- **iterations** stores the current number of iterations.
 
 Initializing currNode to node 0, the method begins the search by flagging the first node, pushing that node onto pathStack, and notifying the user that the search has begun. While pathStack contains elements, the method increases the number of iterations, sets shouldPop to true, and sets the current node to the element at the top of the stack.
 
