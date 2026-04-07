@@ -41,6 +41,7 @@ graph LR
   D --> G
   D --> H
 ```
+*Figure 1: graph representation of dungeon traversal*
 
 **BFS order:** A --> B --> E --> C --> F --> D --> G --> H
 
