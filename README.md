@@ -29,6 +29,14 @@ To follow BFS is to search all adjacent nodes before advancing to the next node 
 
 The application implements both, counting the number of iterations for each.
 
+Consider the following graph:
+
+A -- B -- C -- D -- H
+|    |    |    |
+E ---     F    G
+
+Starting from A, DFS would take one all the way to H before navigating through the rest of the graph. Starting from that same node, BFS would take one through the entire graph before reaching H.
+
 ## Input Format
 
 This application receives as input a graph file of no more than 1,000 characters. Each line in the file contains 2 distinct numbers separated by a space, representing an edge.
