@@ -29,7 +29,7 @@ To follow BFS is to search all adjacent nodes before advancing to the next node 
 
 The application implements both, counting the number of iterations for each.
 
-Consider the following graph:
+### Graph Representation
 
 ```mermaid
 graph LR
