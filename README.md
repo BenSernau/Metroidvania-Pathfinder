@@ -43,6 +43,7 @@ graph LR
 ```
 
 **BFS order:** A --> B --> E --> C --> F --> D --> G --> H
+
 **DFS order:** A --> B --> C --> D --> H --> G --> F --> E
 
 ## Input Format
