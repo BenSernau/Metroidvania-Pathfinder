@@ -32,7 +32,7 @@ The application implements both, counting the number of iterations for each.
 Consider the following graph:
 
 ```mermaid
-graph TD
+graph LR
   A --> E
   A --> B
   B --> C
