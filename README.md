@@ -31,17 +31,18 @@ The application implements both, counting the number of iterations for each.
 
 Consider the following graph:
 
-```
-A --> E
-A --> B
-B --> C
-C --> F
-C --> D
-D --> G
-D --> H
-
-%% BFS order: A --> B --> E --> C --> F --> D --> G --> H
-%% DFS order: A --> B --> C --> D --> H --> G --> F --> E
+```mermaid
+graph TD
+  A --> E
+  A --> B
+  B --> C
+  C --> F
+  C --> D
+  D --> G
+  D --> H
+  
+  %% BFS order: A --> B --> E --> C --> F --> D --> G --> H
+  %% DFS order: A --> B --> C --> D --> H --> G --> F --> E
 ```
 
 ## Input Format
