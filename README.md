@@ -32,7 +32,9 @@ The application implements both, counting the number of iterations for each.
 Consider the following graph:
 
 A -- B -- C -- D -- H
+
 |    |    |    |
+
 E ---     F    G
 
 Starting from A, DFS would take one all the way to H before navigating through the rest of the graph. Starting from that same node, BFS would take one through the entire graph before reaching H.
