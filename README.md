@@ -32,12 +32,17 @@ The application implements both, counting the number of iterations for each.
 Consider the following graph:
 
 ```
-A -- B -- C -- D -- H
-|    |    |    |
-E ---     F    G
-```
+A --> E
+A --> B
+B --> C
+C --> F
+C --> D
+D --> G
+D --> H
 
-Starting from A, DFS would take one all the way to H before navigating through the rest of the graph. Starting from that same node, BFS would take one through the entire graph before reaching H.
+%% BFS order: A --> B --> E --> C --> F --> D --> G --> H
+%% DFS order: A --> B --> C --> D --> H --> G --> F --> E
+```
 
 ## Input Format
 
