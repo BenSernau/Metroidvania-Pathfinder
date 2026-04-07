@@ -10,6 +10,15 @@
 
 This desktop application models video game “dungeon” layouts as unweighted undirected graphs to evaluate traversal strategies with breadth-first search (BFS) and depth-first search (DFS). The tool outputs traversal steps and reports iteration counts for both types of search.
 
+## Purpose
+
+This project demonstrates:
+- Graph-based modeling
+- Application of traversal algorithms
+- Clear technical documentation for algorithm-driven systems
+
+It is a learninhg tool as well as a documentation sample.
+
 ## Problem Definition
 
 In terms of fundamental design, a game’s dungeons are little beyond unweighted undirected graphs. There are 2 primary options to visit all nodes in such a simple graph: depth-first search (DFS) or breadth-first search (BFS). 
