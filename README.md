@@ -17,7 +17,7 @@ This project demonstrates:
 - Application of traversal algorithms
 - Clear technical documentation for algorithm-driven systems
 
-It is a learninhg tool as well as a documentation sample.
+It is a learning tool as well as a documentation sample.
 
 ## Problem Definition
 
